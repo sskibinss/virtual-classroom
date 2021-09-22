@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>Classroom</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/5.1.0/css/bootstrap.min.css"/>
+</head>
+<body>
+<h1>CLASSROOM</h1>
+<table class="table-bordered table-striped text-center d-lg-table">
+  <thead>
+  <tr>
+    <th>Member Name</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="user: ${users}">
+    <!--/*@thymesVar id="name" type="java.lang.String"*/-->
+    <td th:text="${user.name}">Name</td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
