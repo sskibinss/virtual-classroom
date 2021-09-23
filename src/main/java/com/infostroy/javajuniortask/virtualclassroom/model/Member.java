@@ -1,10 +1,10 @@
-package com.infostroy.javajuniortask.virtualclassroom.entity;
+package com.infostroy.javajuniortask.virtualclassroom.model;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "members")
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,11 +13,11 @@ public class User {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    public User(String name) {
+    public Member(String name) {
         this.name = name;
     }
 
-    public User() {
+    public Member() {
     }
 
     public String getName() {

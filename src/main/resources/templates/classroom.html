@@ -13,9 +13,9 @@
   </tr>
   </thead>
   <tbody>
-  <tr th:each="user: ${users}">
+  <tr th:each="member: ${members}">
     <!--/*@thymesVar id="name" type="java.lang.String"*/-->
-    <td th:text="${user.name}">Name</td>
+    <td th:text="${member.name}">Name</td>
   </tr>
   </tbody>
 </table>
