@@ -1,11 +1,10 @@
 import React, {Component} from "react";
-import {Container, Navbar, DropdownButton, Dropdown, NavDropdown} from "react-bootstrap";
+import {Container, Navbar, DropdownButton, Dropdown, NavDropdown, Button} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import RaiseHandButton from "./RaiseHandButton";
 
-export default class NavigationBar extends Component {
+export default function navigationBar() {
 
-    render() {
         return (
             <Navbar bg="dark" variant={"dark"} expand="lg">
                 <Container>
@@ -15,13 +14,12 @@ export default class NavigationBar extends Component {
                     <Link to={"/classroom"} className="navbar-brand">
                         Welcome to the Classroom
                     </Link>
-                    <NavDropdown title={this.props.children.name} id="nav-dropdown">
-                        <Link to={"/logout"} className="nav dropdown-item">
+                    <NavDropdown title={"Username"} id="nav-dropdown">
+                        <Button className="nav dropdown-item"  href="/"/*onClick={this.deleteMember}*/>
                             Log Out
-                        </Link>
+                        </Button>
                     </NavDropdown>
                 </Container>
             </Navbar>
         )
-    }
 }

@@ -13,8 +13,13 @@ public class Member {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @Column(name = "is_hand_up", nullable = false)
-    private boolean isHandsUp;
+    @Column(name = "is_hand_raised", nullable = false)
+    private boolean isHandRaised;
+
+    public Member(String name, boolean isHandRaised) {
+        this.name = name;
+        this.isHandRaised = isHandRaised;
+    }
 
     public Member(String name) {
         this.name = name;
@@ -31,11 +36,11 @@ public class Member {
         this.name = name;
     }
 
-    public boolean isHandsUp() {
-        return isHandsUp;
+    public boolean isHandRaised() {
+        return isHandRaised;
     }
 
-    public void setHandsUp(boolean handsUp) {
-        isHandsUp = handsUp;
+    public void setHandRaised(boolean handRaised) {
+        isHandRaised = handRaised;
     }
 }
