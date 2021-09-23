@@ -1,27 +1,43 @@
 import React, {Component} from "react";
 import {Card, Form, Button} from "react-bootstrap";
+import axios from "axios";
 
 export default class AddMember extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {name: ''};
+        this.state = this.initialState;
         this.submitMember = this.submitMember.bind(this);
         this.memberChange = this.memberChange.bind(this);
     }
 
-    submitMember(event) {
-        alert("Name is " + this.state.name);
+    submitMember = event => {
         event.preventDefault();
+        const member = {
+            name: this.state.name
+        }
+
+        axios.post("http://localhost:8080/members/new-member", member)
+            .then(response => {
+                if(response.data != null) {
+                    this.setState(this.initialState)
+                    this.props.history.push("/classroom")
+                }
+            })
     }
 
-    memberChange(event) {
+    initialState = {
+        name: ''
+    }
+
+    memberChange = event => {
         this.setState({
             [event.target.name]:event.target.value
         })
     }
 
     render() {
+        const {name} = this.state;
         return (
             <Card style={{width: '18rem'}}
                   className="m-auto mt-lg-5 border border-dark bg-dark text-white text-center ">
@@ -30,9 +46,9 @@ export default class AddMember extends Component {
                     <Form onSubmit={this.submitMember} id={"memberFormId"}>
                         <Form.Group className="mb-3" controlId="formGridName">
                             <Form.Label>Name</Form.Label>
-                            <Form.Control required
+                            <Form.Control required autoComplete="off"
                                 type="test" name="name"
-                                value={this.state.name} onChange={this.memberChange}
+                                value={name} onChange={this.memberChange}
                                 placeholder="Enter your name"/>
                             <Form.Text className="text-muted">
                                 Your name will be visible to the whole class
@@ -45,6 +61,7 @@ export default class AddMember extends Component {
                     </Form>
                 </Card.Body>
             </Card>
+
         )
     }
 }

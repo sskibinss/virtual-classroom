@@ -6,7 +6,9 @@ function useHandButton() {
     const up = "Raise Hand Up";
     const down = "Raise Hand Down";
     return (
-        <Button onClick={() => setButtonText(buttonText === up ? down : up)}>{buttonText}</Button>
+        <Button onClick={() => {
+            setButtonText(buttonText === up ? down : up)
+        }}>{buttonText}</Button>
     )
 }
 export default useHandButton;

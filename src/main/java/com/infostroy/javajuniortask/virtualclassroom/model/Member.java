@@ -13,6 +13,9 @@ public class Member {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    @Column(name = "is_hand_up", nullable = false)
+    private boolean isHandsUp;
+
     public Member(String name) {
         this.name = name;
     }
@@ -26,5 +29,13 @@ public class Member {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isHandsUp() {
+        return isHandsUp;
+    }
+
+    public void setHandsUp(boolean handsUp) {
+        isHandsUp = handsUp;
     }
 }

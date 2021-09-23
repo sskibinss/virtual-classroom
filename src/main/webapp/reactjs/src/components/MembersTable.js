@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import {Card, Table} from "react-bootstrap";
 import NavigationBar from "./NavigationBar";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHandSpock} from "@fortawesome/free-solid-svg-icons";
+import handCatcher from "./HandCatcher";
 import axios from "axios";
 
 
@@ -16,32 +15,36 @@ export default class MembersTable extends Component{
     }
 
     componentDidMount() {
-        axios.get("http://localhost:8080/members/classroom")
-            .then(response => console.log(response.data));
+        this.findAllMembers();
     }
 
+    findAllMembers() {
+        axios.get("http://localhost:8080/members/classroom")
+            .then(response => response.data)
+            .then((data) => {
+                this.setState({members: data})
+            });
+    }
     render() {
         return (
             <Card style={{width: '35rem'}} className="m-auto mt-sm-4 border border-dark bg-dark text-white">
-                <Card.Header><NavigationBar/> </Card.Header>
+                <Card.Header><NavigationBar children={{name:this.state.members.find((id) =>
+                    id === this.state.members.length)}}/> </Card.Header>
                 <Card.Body>
                 <Table bordered hover striped variant="dark" size="sm">
                     <thead >
                     <tr align="center">
-
-                        <th>Member Name</th>
+                        <th colSpan={2}>Members</th>
                     </tr>
                     </thead>
                     <tbody style={{offset: 2}} className="text-capitalize">
-                    <tr>
-                        <td>@mdo <FontAwesomeIcon icon={faHandSpock}/></td>
-                    </tr>
-                    <tr>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <td>@twitter</td>
-                    </tr>
+                    {this.state.members.map((member) => (
+                        <tr key={member.id}>
+                            <td>{member.name}</td>
+                            <td className={"text-end text-center borderless"}>  </td>
+                        </tr>
+                    ))
+                    }
                     </tbody>
                 </Table>
                 </Card.Body>

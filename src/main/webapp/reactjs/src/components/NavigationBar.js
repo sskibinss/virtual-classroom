@@ -15,7 +15,7 @@ export default class NavigationBar extends Component {
                     <Link to={"/classroom"} className="navbar-brand">
                         Welcome to the Classroom
                     </Link>
-                    <NavDropdown title="Username" id="nav-dropdown">
+                    <NavDropdown title={this.props.children.name} id="nav-dropdown">
                         <Link to={"/logout"} className="nav dropdown-item">
                             Log Out
                         </Link>
